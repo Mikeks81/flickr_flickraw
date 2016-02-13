@@ -1,0 +1,33 @@
+<h1>Home#index</h1>
+<p>Find me in app/views/home/index.html.erb</p>
+<%= form_tag '/search', method: 'get' do %>
+	<%= label_tag :name_query, "Search by Username" %>
+	<%= text_field_tag :name_query %>
+	<%= submit_tag "Search"%>
+<% end %>
+
+<%= form_tag '/search_text', method: 'get' do %>
+	<%= label_tag :query, "Search Photos" %>
+	<%= text_field_tag :query %>
+	<%= submit_tag "Search"%>
+<% end %>
+
+<%if @user_photo_array %>
+	<% @user_photo_array.each do |photo| %>
+		<p>
+			<%= image_tag FlickRaw.url_c(photo) %>
+		</p>
+	<% end %>
+<% end %>
+
+<% if @photos %>
+	<% @photos.each do |photo| %>
+		<p>
+			<%= image_tag FlickRaw.url_c(photo) %>
+			<%#= FlickRaw.getExif(photo) %>
+			<li><%= photo.title %></li>
+			<li><%#= photo.exif %></li>
+		</p>
+
+	<% end %>
+<% end %>
